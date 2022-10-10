@@ -87,11 +87,11 @@ class ClPosting:
   def from_post_rw(cls, db_row):
     ret = cls(title=db_row.title, price=float(db_row.price), im_url_list=[], pic_hash_list=None, loc=None, ts=None,
               aliases=None, innertext=db_row.innertext)
-    if not db_row.lat.isna() and db_row.lon.isna():
+    if not np.isnan(db_row.lat) and np.isnan(db_row.lon):
       ret.loc = (float(db_row.lat), float(db_row.lon))
-    if not db_row.pic1.isna():
+    if not np.isnan(db_row.pic1):
       ret.im_url_list.append(db_row.pic1)
-    if not db_row.pic2.isna():
+    if not np.isnan(db_row.pic2):
       ret.im_url_list.append(db_row.pic2)
     return ret
 
