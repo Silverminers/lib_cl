@@ -449,14 +449,26 @@ class DbMgr(ABC):
 
 class PostDb(DbMgr):
   def get_schema(self):
-    return {'title':'object', 'url':'object', 'price':np.int32, 'lat':np.float32, 'lon':np.float32}
-  def add_row(self,clposting, url):
+    return {'title':'object', 'url':'object', 'price':np.int32, 'lat':np.float32, 'lon':np.float32, 
+              'pic1':'object', 'pic2': 'object', 'innertext':'object'}
+  def add_row(self, clposting:ClPosting, url:str):
     hurl = np.uint64(hash_st(url))
     self.df.drop(int(hurl), inplace=True,errors='ignore')
-    cols = {'title':clposting.title, 'url':url, 'price':np.int32(clposting.price), 'lat':np.nan, 'lon':np.nan, 'ts':atime()}
+    cols = {'title':clposting.title, 'url':url, 'price':np.int32(clposting.price), 'lat':np.nan, 'lon':np.nan, 'pic1':np.nan,
+            'pic2':np.nan, 'innertext':np.nan, 'ts':atime()}
     if clposting.loc is not None:
       cols['lat'] = np.float32(clposting.loc[0])
       cols['lon'] = np.float32(clposting.loc[1])
+    try:
+      cols['pic1'] = clposting.im_url_list[0]
+    except IndexError:
+      pass
+    try:
+      cols['pic2'] = clposting.im_url_list[1]
+    except IndexError:
+      pass
+    if clposting.innertext is not None:
+      cols['innertext'] = clposting.innertext
     self.df = pd.concat( [self.df, pd.DataFrame(cols, index=np.array([hurl],dtype=np.uint64))] )
   def query(self, url):
     hurl = np.uint64(hash_st(url))
