@@ -50,23 +50,24 @@ while True:
   for a,q in aq_pairs:
     new_posts = {**new_posts, **fetch_post_data(a,q)}
   for url, pp in new_posts.items():
+    pp:ClPosting
     # lg.debug(f"Considering {url}")
     if pdb.query(url) is not None:
       # skip
       lg.debug(f"URL MATCH {url}: {pp.title}")
       continue
-    pdb.add_row(pp, url)
     pic_hashes = process_imid_list(pp.im_url_list)
     imres = imdb.query(pic_hashes)
     imdb.add_row(pic_hashes,url)
     lex_df = lp.process(url, clpost=pp)
+    pdb.add_row(pp, url)
     if len(pic_hashes) and len(imres)/len(pic_hashes) > 0.5:
       # skip
       lg.info(f"PIC MATCH {url} {pp.title}")
       try:
         lg.info(f"\t- {pdb.df.loc[imres.index[0]].url}")
       except Exception:
-        lg.warn("Matching URL not found!")
+        lg.warning("Matching URL not found!")
 
       ldb.add_row(lex_df,url)
       continue
@@ -80,7 +81,7 @@ while True:
       try:
         lg.info(f"\t- {pdb.df.loc[lexres.index[0]].url}")
       except Exception:
-        lg.warn("Matching URL not found!")
+        lg.warning("Matching URL not found!")
 
     else:
       if any(j in banned_ngrams for j in get_bigrams(pp.innertext)) or\
