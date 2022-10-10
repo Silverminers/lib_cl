@@ -83,6 +83,18 @@ class ClPosting:
   aliases: list # Not currently used
   innertext: str = None
 
+  @classmethod
+  def from_post_rw(cls, db_row):
+    ret = cls(title=db_row.title, price=float(db_row.price), im_url_list=[], pic_hash_list=None, loc=None, ts=None,
+              aliases=None, innertext=db_row.innertext)
+    if not db_row.lat.isna() and db_row.lon.isna():
+      ret.loc = (float(db_row.lat), float(db_row.lon))
+    if not db_row.pic1.isna():
+      ret.im_url_list.append(db_row.pic1)
+    if not db_row.pic2.isna():
+      ret.im_url_list.append(db_row.pic2)
+    return ret
+
   def get_ext_title(self):
     ret = self.title
     if self.price != -1:
