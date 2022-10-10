@@ -459,15 +459,22 @@ class DbMgr(ABC):
 
 #@title PostDb
 
+class Status:
+  unknown = 0
+  rej_pic = 1
+  rej_lex = 2
+  rej_filter = 3
+  passed = 4
+
 class PostDb(DbMgr):
   def get_schema(self):
-    return {'title':'object', 'url':'object', 'price':np.int32, 'lat':np.float32, 'lon':np.float32, 
+    return {'title':'object', 'url':'object', 'price':np.int32, 'lat':np.float32, 'lon':np.float32, 'status':np.uint8,
               'pic1':'object', 'pic2': 'object', 'innertext':'object'}
   def add_row(self, clposting:ClPosting, url:str):
     hurl = np.uint64(hash_st(url))
     self.df.drop(int(hurl), inplace=True,errors='ignore')
-    cols = {'title':clposting.title, 'url':url, 'price':np.int32(clposting.price), 'lat':np.nan, 'lon':np.nan, 'pic1':np.nan,
-            'pic2':np.nan, 'innertext':np.nan, 'ts':atime()}
+    cols = {'title':clposting.title, 'url':url, 'price':np.int32(clposting.price), 'lat':np.nan, 'lon':np.nan, 'status':np.uint8(Status.unknown), 
+            'pic1':np.nan, 'pic2':np.nan, 'innertext':np.nan, 'ts':atime()}
     if clposting.loc is not None:
       cols['lat'] = np.float32(clposting.loc[0])
       cols['lon'] = np.float32(clposting.loc[1])
