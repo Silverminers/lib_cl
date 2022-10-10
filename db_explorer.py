@@ -1,4 +1,6 @@
-#!/usr/bin/python3 -i
+import os
+# This can be placed at top or bottom of the script, unlike code.interact
+os.environ['PYTHONINSPECT'] = 'TRUE'  
 
 from lib_cl import *
 
