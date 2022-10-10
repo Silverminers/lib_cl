@@ -43,15 +43,17 @@ fp = open("entries.txt", "a")
 lg.info("Startup")
 while True:
   lg.debug("Start Main Loop")
-  for i in dbs:
-    i.mgmt()
 
   new_posts = {}
   for a,q in aq_pairs:
     new_posts = {**new_posts, **fetch_post_data(a,q)}
+
   for url, pp in new_posts.items():
+    for i in dbs:
+      i.mgmt()
+
     pp:ClPosting
-    # lg.debug(f"Considering {url}")
+
     if pdb.query(url) is not None:
       # skip
       lg.debug(f"URL MATCH {url}: {pp.title}")
