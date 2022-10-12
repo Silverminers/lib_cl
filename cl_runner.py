@@ -71,7 +71,8 @@ while True:
       except Exception:
         lg.warning("Matching URL not found!")
 
-      ldb.add_row(lex_df,url)
+      if lex_df is not None:
+        ldb.add_row(lex_df,url)
       continue
     if lex_df is None:
       lexres = []
