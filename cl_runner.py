@@ -31,7 +31,7 @@ foreign_areas = [cl_sites_rev[i] for i in ['mendocino.craigslist.org',
 ROW_SZ = 40
 aq_pairs = [(i,'coins') for i in [1]+foreign_areas] + [(i,'coin') for i in [1]+foreign_areas]
 
-e = Emailer()
+e = Emailer(pw='ysvvbwadjrinsyyb', fromaddr='davidli276062@gmail.com')
 lp = LexProcessor(rowsize=ROW_SZ)
 pdb = PostDb()
 imdb = ImDb()
