@@ -12,7 +12,7 @@ wallet_grams = ['coin purse', 'plenty of space', 'money and important', 'slip po
 crypto_mining = ['the rig', 'power consumption']
 vending_grams = ['pressed steel', 'used and refurbished', 'are for quarters','machine is', 'machine will', 'soda vending', 'vending machine']
 coin_sorter = ['coin sorter', 'operating modes','power source', 'fast sort','for each denomination', 'money jar']
-arcade = ['coins or freeplay', 'arcade game','arcade games', 'slot machine', 
+arcade = ['coins or freeplay', 'arcade game','arcade games', 'slot machine', 'insert coin',
           'work on', 'the machine', 'cherry coins', 'beautiful cabinet', 'on coins', 'refurbished with']
 
 banned_ngrams_raw = cash_for_coins+piggy_bank_grams+wallet_grams+crypto_mining+vending_grams+coin_sorter+arcade
