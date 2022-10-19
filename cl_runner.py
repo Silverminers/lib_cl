@@ -8,12 +8,14 @@ cash_for_coins = ['cash for', 'your items', 'dont want', 'will pay', 'buy your',
                'years experience', 'selling your', 'cash paid', 'top dollar', 'also buy', 
                'in any condition']
 piggy_bank_grams = ['piggy bank', 'coin bank', 'ceramic piggy', 'button at', 'piggy banks']
-wallet_grams = ['coin purse', 'plenty of space', 'money and important', 'slip pockets', 'bifold wallet', 'genuine leather']
+wallet_grams = ['coin purse', 'plenty of space', 'money and important', 
+                'slip pockets', 'bifold wallet', 'genuine leather','coin compartment','coin pocket']
 crypto_mining = ['the rig', 'power consumption']
 vending_grams = ['pressed steel', 'used and refurbished', 'are for quarters','machine is', 'machine will', 'soda vending', 'vending machine']
 coin_sorter = ['coin sorter', 'operating modes','power source', 'fast sort','for each denomination', 'money jar']
-arcade = ['coins or freeplay', 'arcade game','arcade games', 'slot machine', 'insert coin',
-          'work on', 'the machine', 'cherry coins', 'beautiful cabinet', 'on coins', 'refurbished with']
+arcade = ['coins or freeplay', 'arcade game','arcade games', 'slot machine', 'insert coin', 'arcade cabinet',
+          'work on', 'the machine', 'cherry coins', 'beautiful cabinet', 'on coins', 'refurbished with',
+          'coinoperated','coinop']
 
 banned_ngrams_raw = cash_for_coins+piggy_bank_grams+wallet_grams+crypto_mining+vending_grams+coin_sorter+arcade
 banned_ngrams = [tuple(i.split()) for i in banned_ngrams_raw]
@@ -87,8 +89,10 @@ while True:
         lg.warning("Matching URL not found!")
 
     else:
-      if any(j in banned_ngrams for j in get_bigrams(pp.innertext)) or\
+      if any(j in banned_ngrams for j in get_words(pp.innertext)) or\
+         any(j in banned_ngrams for j in get_bigrams(pp.innertext)) or\
          any(j in banned_ngrams for j in get_trigrams(pp.innertext)) or\
+         any(j in banned_ngrams for j in get_words(pp.title)) or\
          any(j in banned_ngrams for j in get_bigrams(pp.title)) or\
          any(j in banned_ngrams for j in get_bigrams(pp.title)):
         lg.info(f"BANNED {url} {pp.title}")

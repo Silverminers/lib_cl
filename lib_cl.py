@@ -631,6 +631,10 @@ def sep_ln_into_words(ln):
 def sep_text_into_lines(text):
   return re.split(r"[\!&\(\)\*\+\,\.\/\:\;\<\=\>\?\[\\\]\^\_\{\|\}\~\n]+",text)
 
+def get_words(text):
+  grams = [sep_ln_into_words(i) for i in sep_text_into_lines(text) if len(sep_ln_into_words(i))]
+  return [b for l in grams for b in l]
+
 def get_bigrams(text):
   grams = [sep_ln_into_words(i) for i in sep_text_into_lines(text) if len(sep_ln_into_words(i))]
   return [b for l in grams for b in zip(l[:-1], l[1:])]
