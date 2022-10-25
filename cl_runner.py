@@ -9,7 +9,7 @@ lg.setLevel(logging.INFO)
 cash_for_coins = ['cash for', 'your items', 'dont want', 'will pay', 'buy your', 'pay fair', 
                'your unwanted', 'your jewelry', 'buying sports',
                'years experience', 'selling your', 'cash paid', 'top dollar', 'also buy', 
-               'in any condition']
+               'in any condition', 'i pay cash']
 piggy_bank_grams = ['piggy bank', 'coin bank', 'ceramic piggy', 'button at', 'piggy banks']
 wallet_grams = ['coin purse', 'plenty of space', 'money and important', 
                 'slip pockets', 'bifold wallet', 'genuine leather','coin compartment','coin pocket']
