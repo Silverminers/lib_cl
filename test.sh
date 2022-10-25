@@ -10,6 +10,6 @@ exitfn () {
 
 trap "exitfn" INT 
 
-python3 -u cl_runner.py
+STAGING=1 python3 -u cl_runner.py
 
 trap SIGINT

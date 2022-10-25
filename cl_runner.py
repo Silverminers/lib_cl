@@ -1,4 +1,7 @@
 from lib_cl import *
+import os
+is_staging = bool(os.environ.get("STAGING",None))
+
 lg.setLevel(logging.INFO)
 
 
@@ -33,7 +36,8 @@ foreign_areas = [cl_sites_rev[i] for i in ['mendocino.craigslist.org',
 ROW_SZ = 40
 aq_pairs = [(i,'coins') for i in [1]+foreign_areas] + [(i,'coin') for i in [1]+foreign_areas]
 
-e = Emailer(pw='ysvvbwadjrinsyyb', fromaddr='davidli276062@gmail.com')
+e = Emailer(pw='ysvvbwadjrinsyyb', fromaddr='davidli276062@gmail.com',
+            toaddr=("morgandollar12@gmail.com" if is_staging else "doverdt@gmail.com"))
 lp = LexProcessor(rowsize=ROW_SZ)
 pdb = PostDb()
 imdb = ImDb()
@@ -42,7 +46,7 @@ dbs = [pdb,imdb,ldb]
 
 fp = open("entries.txt", "a")
 
-lg.info("Startup")
+lg.info(f"Startup (Staging={is_staging})")
 while True:
   lg.debug("Start Main Loop")
 
