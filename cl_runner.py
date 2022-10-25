@@ -89,13 +89,18 @@ while True:
         lg.warning("Matching URL not found!")
 
     else:
-      if any(j in banned_ngrams for j in get_words(pp.innertext)) or\
-         any(j in banned_ngrams for j in get_bigrams(pp.innertext)) or\
-         any(j in banned_ngrams for j in get_trigrams(pp.innertext)) or\
-         any(j in banned_ngrams for j in get_words(pp.title)) or\
-         any(j in banned_ngrams for j in get_bigrams(pp.title)) or\
-         any(j in banned_ngrams for j in get_bigrams(pp.title)):
+      ngram_match_list = []
+      for j in get_words(pp.innertext) + \
+               get_bigrams(pp.innertext) + \
+               get_trigrams(pp.innertext) + \
+               get_words(pp.title) + \
+               get_bigrams(pp.title) + \
+               get_bigrams(pp.title):
+        if j in banned_ngrams:
+          ngram_match_list.append(j)
+      if ngram_match_list:
         lg.info(f"BANNED {url} {pp.title}")
+        lg.info(f"\t- {ngram_match_list}")
       else:
         #print(repr(pp))
         lg.info(f"VALID! {url} {pp.title}")
