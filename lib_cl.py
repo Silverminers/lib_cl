@@ -633,7 +633,7 @@ def sep_text_into_lines(text):
 
 def get_words(text):
   grams = [sep_ln_into_words(i) for i in sep_text_into_lines(text) if len(sep_ln_into_words(i))]
-  return [b for l in grams for b in l]
+  return [(b,) for l in grams for b in l]
 
 def get_bigrams(text):
   grams = [sep_ln_into_words(i) for i in sep_text_into_lines(text) if len(sep_ln_into_words(i))]
