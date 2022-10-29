@@ -9,16 +9,17 @@ lg.setLevel(logging.INFO)
 cash_for_coins = ['cash for', 'your items', 'will pay', 'buy your', 'pay fair', 
                'your unwanted', 'your jewelry', 'buying sports',
                'years experience', 'selling your', 'cash paid', 'top dollar', 'also buy', 
-               'in any condition', 'i pay cash', 'pay top']
+               'in any condition', 'i pay cash', 'pay top', 'looking to purchase']
 piggy_bank_grams = ['piggy bank', 'coin bank', 'ceramic piggy', 'button at', 'piggy banks']
 wallet_grams = ['coin purse', 'plenty of space', 'money and important', 
                 'slip pockets', 'bifold wallet', 'genuine leather','coin compartment','coin pocket']
-crypto_mining = ['the rig', 'power consumption']
-vending_grams = ['pressed steel', 'used and refurbished', 'are for quarters','machine is', 'machine will', 'soda vending', 'vending machine']
+crypto_mining = ['the rig', 'power consumption', 'mining rig']
+vending_grams = ['pressed steel', 'used and refurbished', 'are for quarters','machine is', 
+                 'machine will', 'soda vending', 'vending machine', 'commercial coin']
 coin_sorter = ['coin sorter', 'operating modes','power source', 'fast sort','for each denomination', 'money jar']
 arcade = ['coins or freeplay', 'arcade game','arcade games', 'slot machine', 'insert coin', 'arcade cabinet',
           'work on', 'the machine', 'cherry coins', 'beautiful cabinet', 'refurbished with',
-          'coinoperated','coinop', 'coin op', 'coin operated', 'coin mat', 'coin pusher']
+          'coinoperated','coinop', 'coin op', 'coin operated', 'coin mat', 'coin flooring', 'coin pusher', 'pinball', 'pin ball']
 
 banned_ngrams_raw = cash_for_coins+piggy_bank_grams+wallet_grams+crypto_mining+vending_grams+coin_sorter+arcade
 banned_ngrams = [tuple(i.split()) for i in banned_ngrams_raw]
