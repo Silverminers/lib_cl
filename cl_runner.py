@@ -13,7 +13,7 @@ cash_for_coins = ['cash for', 'your items', 'will pay', 'buy your', 'pay fair',
 piggy_bank_grams = ['piggy bank', 'coin bank', 'ceramic piggy', 'button at', 'piggy banks']
 wallet_grams = ['coin purse', 'plenty of space', 'money and important', 
                 'slip pockets', 'bifold wallet', 'genuine leather','coin compartment','coin pocket']
-crypto_mining = ['the rig', 'power consumption', 'mining rig']
+crypto_mining = ['the rig', 'power consumption', 'mining rig', 'bit coin']
 vending_grams = ['pressed steel', 'used and refurbished', 'are for quarters','machine is', 
                  'machine will', 'soda vending', 'vending machine', 'commercial coin']
 coin_sorter = ['coin sorter', 'operating modes','power source', 'fast sort','for each denomination', 'money jar']
