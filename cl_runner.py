@@ -103,7 +103,13 @@ while True:
                get_bigrams(pp.title):
         if j in banned_ngrams:
           ngram_match_list.append(j)
-      if ngram_match_list:
+      
+      special_seller = False
+      if pp.loc is not None:
+        if ((pp.loc[0] - 37.279701)**2 + (pp.loc[1]+121.824203)**2) < 0.005 and pp.price in range(9,40):
+          special_seller = True
+
+      if ngram_match_list or special_seller:
         lg.info(f"BANNED {url} {pp.title}")
         lg.info(f"\t- {ngram_match_list}")
       else:
